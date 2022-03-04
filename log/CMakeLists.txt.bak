@@ -1,0 +1,28 @@
+message(STATUS "========= build log start =========")
+
+#aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/spdlog/src SPDLOG_SRC)
+#aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/spdlog/include SPDLOG_INC)
+
+set(log_HEADERS
+    log.h
+    ${PROJECT_SOURCE_DIR}/include/singleton.h)
+
+set(log_SOURCES
+    log.cpp)
+
+message(STATUS "PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")    
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/spdlog/include)
+
+set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
+
+#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/spdlog")
+
+#file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+
+add_library(log SHARED
+	${log_SOURCES}
+    #${SOURCES}
+	${log_HEADERS})
+
+#target_include_directories(log PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+target_link_libraries(log ${CMAKE_CURRENT_SOURCE_DIR}/spdlog/build/Debug/spdlogd.lib)    
