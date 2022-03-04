@@ -25,20 +25,18 @@ endif()
 
 option(USE_LOG "Use tutorial provided log implementation" ON)
 if(USE_LOG)
-    message("use log as lib")
+    message("use log as lib hh")
     add_subdirectory(log)
     list(APPEND EXTRA_LIBS log)
     list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/log")
 
     add_executable(demoSDK main.cpp)
 else()
-    message("use log as cpp")
+    message("use log as cpp hh")
     include_directories (${CMAKE_CURRENT_SOURCE_DIR}/log/spdlog/include)
     include_directories (${CMAKE_CURRENT_SOURCE_DIR}/log)
     add_executable(demoSDK main.cpp log/log.cpp log/log.h)
 endif()
-
-
 
 # 对目标的外部库进行链接操作
 target_link_libraries(demoSDK PUBLIC ${EXTRA_LIBS})

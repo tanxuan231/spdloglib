@@ -39,7 +39,7 @@ public:
     void Printf(const spdlog::source_loc& loc, spdlog::level::level_enum lvl,
                 const char* fmt, const Args &... args);
 
-    auto GetLogger() const;
+    std::shared_ptr<spdlog::logger> GetLogger() const;
 
 private:
     BLogType m_type_;
@@ -53,7 +53,7 @@ LogSeivice::~LogSeivice()
 {
 }
 
-auto LogSeivice::GetLogger() const
+std::shared_ptr<spdlog::logger> LogSeivice::GetLogger() const
 {
     return m_logger;
 }
